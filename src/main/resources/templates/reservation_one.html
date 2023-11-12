@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{/fragment/header ::nav}"></div>
+    <div th:insert="~{/fragment/header ::menu}"></div>
+    <div th:insert="~{/fragment/header ::box}"></div>
+</head>
+
+<body>
+<div class="container">
+    <div class="menu">
+        <div class="menu-item">
+            <a th:href="@{/game/form}">경기 추가</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/game}">경기 목록</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/reservation}">예매 목록</a>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <div class="content">
+        <div class="content-box">
+            <div th:each="t:${tickets}">
+                <h5>티켓 타입 <span th:text="${t.ticketType}"></span></h5>
+                <h5>티켓 가격 <span th:text="${t.price}"></span></h5>
+                <h5>티켓 번호 <span th:text="${t.id}"></span></h5>
+                <h5>티켓 구매 날짜 <span th:text="${t.createdAt}"></span></h5>
+                <hr>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

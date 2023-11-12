@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{/fragment/header ::nav}"></div>
+    <div th:insert="~{/fragment/header ::menu}"></div>
+    <div th:insert="~{/fragment/header ::box}"></div>
+</head>
+
+<body>
+<div class="container">
+    <div class="menu">
+        <div class="menu-item">
+            <a th:href="@{/game/form}">경기 추가</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/game}">경기 목록</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/reservation}">예매 목록</a>
+        </div>
+
+    </div>
+</div>
+<div class="box">
+    <div class="content">
+        <div class="content-box">
+            <h1>예매 내역</h1>
+            <hr>
+            <div th:each="r:${reservations}">
+                <h3>예매자명 : <span th:text="${r.username}"></span></h3>
+                <h3>예매자 Email : <span th:text="${r.email}"></span></h3>
+                <h3>결제 상태 :<span th:text="${r.status}"></span></h3>
+                <h3>결제 금액 : <span th:text="${r.totalSpending}"></span></h3>
+                <h3>예매 시간 : <span th:text="${r.createdAt}"></span></h3>
+                <a th:href="@{/reservation/{id}(id=${r.id})}">예매 내역 상세 보기</a>
+                <form th:action="@{/reservation/}+${r.id}"  th:method="delete">
+                    <button type="submit" >삭제</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
